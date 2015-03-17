@@ -23,13 +23,11 @@ public class Customer {
 	public String statement() {
 		double totalAmount = 0;
 		int frequentRenterPoints = 0;
-		Iterator<Rental> rentals = rentalList.iterator();
         String statement = "Rental Record for " + getName() + "\n";
-		while (rentals.hasNext()) {
+		for(Rental rental : rentalList) {
 			double thisAmount = 0;
-			Rental rental = rentals.next();
 			thisAmount = rental.getAmountFor(thisAmount);
-            frequentRenterPoints += addBonus(rental);
+            frequentRenterPoints += rental.getFrequentRenterPoints();
             statement += getRentalSubtotal(thisAmount, rental);
             totalAmount += thisAmount;
 		}
@@ -46,18 +44,9 @@ public class Customer {
 
     private String getRentalSubtotal(double thisAmount, Rental rental) {
         String statement;
-        statement = "\t" + rental.getMovie().getTitle() + "\t"
+        statement = "\t" + rental.movie.getMovie().getTitle() + "\t"
                 + String.valueOf(thisAmount) + "\n";
         return statement;
-    }
-
-    private int addBonus(Rental rental) {
-        int frequentRenterPoints = 0;
-        frequentRenterPoints++;
-        if ((rental.getMovie().getPriceCode() == Movie.NEW_RELEASE)
-                && rental.getDaysRented() > 1)
-            frequentRenterPoints++;
-        return frequentRenterPoints;
     }
 
     public String htmlStatement() {
@@ -69,7 +58,7 @@ public class Customer {
             double thisAmount = 0;
             Rental rental = rentals.next();
             thisAmount = rental.getAmountFor(thisAmount);
-            frequentRenterPoints += addBonus(rental);
+            frequentRenterPoints += rental.getFrequentRenterPoints();
             statement += getRentalSubtotalHtml(thisAmount, rental);
             totalAmount += thisAmount;
         }
@@ -79,7 +68,7 @@ public class Customer {
 
     private String getRentalSubtotalHtml(double thisAmount, Rental rental) {
         String statement;
-        statement = "" + rental.getMovie().getTitle() + ": "
+        statement = "" + rental.movie.getMovie().getTitle() + ": "
                 + String.valueOf(thisAmount) + "<BR>";
         return statement;
     }

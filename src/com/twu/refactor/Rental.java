@@ -2,7 +2,7 @@ package com.twu.refactor;
 
 public class Rental {
 
-    private Movie movie;
+    Movie movie;
 
     private int daysRented;
 
@@ -15,27 +15,32 @@ public class Rental {
         return daysRented;
     }
 
-    public Movie getMovie() {
-        return movie;
-    }
-
-    public double getAmountFor(double thisAmount) {
-        switch (getMovie().getPriceCode()) {
+    public double getAmountFor(double rentalAmount) {
+        switch (movie.getMovie().getPriceCode()) {
             case Movie.REGULAR:
-                thisAmount += 2;
+                rentalAmount += 2;
                 if (getDaysRented() > 2)
-                    thisAmount += (getDaysRented() - 2) * 1.5;
+                    rentalAmount += (getDaysRented() - 2) * 1.5;
                 break;
             case Movie.NEW_RELEASE:
-                thisAmount += getDaysRented() * 3;
+                rentalAmount += getDaysRented() * 3;
                 break;
             case Movie.CHILDRENS:
-                thisAmount += 1.5;
+                rentalAmount += 1.5;
                 if (getDaysRented() > 3)
-                    thisAmount += (getDaysRented() - 3) * 1.5;
+                    rentalAmount += (getDaysRented() - 3) * 1.5;
                 break;
 
         }
-        return thisAmount;
+        return rentalAmount;
+    }
+
+    public int getFrequentRenterPoints() {
+        int frequentRenterPoints = 0;
+        frequentRenterPoints++;
+        if ((movie.getMovie().getPriceCode() == Movie.NEW_RELEASE)
+                && getDaysRented() > 1)
+            frequentRenterPoints++;
+        return frequentRenterPoints;
     }
 }
