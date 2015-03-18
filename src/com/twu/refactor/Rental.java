@@ -14,24 +14,8 @@ public class Rental {
         return daysRented;
     }
 
-    public double getAmountFor(double rentalAmount) {
-        switch (getPriceCode()) {
-            case REGULAR:
-                rentalAmount += 2;
-                if (getDaysRented() > 2)
-                    rentalAmount += (getDaysRented() - 2) * 1.5;
-                break;
-            case NEW_RELEASE:
-                rentalAmount += getDaysRented() * 3;
-                break;
-            case KIDS:
-                rentalAmount += 1.5;
-                if (getDaysRented() > 3)
-                    rentalAmount += (getDaysRented() - 3) * 1.5;
-                break;
-
-        }
-        return rentalAmount;
+    public double getAmountFor() {
+        return getPriceCode().getCost(getDaysRented());
     }
 
     public MoviePricingCategory getPriceCode() {
@@ -41,14 +25,10 @@ public class Rental {
     public int getFrequentRenterPoints() {
         int frequentRenterPoints = 0;
         frequentRenterPoints++;
-        if (isMovieNewRelease()
+        if (movie.isMovieNewRelease(this)
                 && getDaysRented() > 1)
             frequentRenterPoints++;
         return frequentRenterPoints;
-    }
-
-    private boolean isMovieNewRelease() {
-        return getPriceCode() == MoviePricingCategory.NEW_RELEASE;
     }
 
     public String getRentalSubtotalHtml(double thisAmount) {

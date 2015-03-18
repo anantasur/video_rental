@@ -26,5 +26,9 @@ public class Movie {
     public Movie getMovie() {
         return this;
     }
+
+    public boolean isMovieNewRelease(Rental rental) {
+        return rental.getPriceCode() == MoviePricingCategory.NEW_RELEASE;
+    }
 }
 

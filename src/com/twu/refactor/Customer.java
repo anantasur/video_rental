@@ -25,8 +25,7 @@ public class Customer {
 		int frequentRenterPoints = 0;
         String statement = "Rental Record for " + getName() + "\n";
 		for(Rental rental : rentalList) {
-			double thisAmount = 0;
-			thisAmount = rental.getAmountFor(thisAmount);
+			double thisAmount = rental.getAmountFor();
             frequentRenterPoints += rental.getFrequentRenterPoints();
             statement += rental.getRentalSubtotal(thisAmount);
             totalAmount += thisAmount;
@@ -47,8 +46,7 @@ public class Customer {
         int frequentRenterPoints = 0;
         String statement = "<H1>Rentals for <EM>" + getName() + "</EM></H1><P>";
           for(Rental rental:rentalList){
-            double thisAmount = 0;
-            thisAmount = rental.getAmountFor(thisAmount);
+            double thisAmount = rental.getAmountFor();
             frequentRenterPoints += rental.getFrequentRenterPoints();
             statement += rental.getRentalSubtotalHtml(thisAmount);
             totalAmount += thisAmount;
