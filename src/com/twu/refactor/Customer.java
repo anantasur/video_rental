@@ -1,7 +1,7 @@
 package com.twu.refactor;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+//import java.util.Iterator;
 
 public class Customer {
 
@@ -28,7 +28,7 @@ public class Customer {
 			double thisAmount = 0;
 			thisAmount = rental.getAmountFor(thisAmount);
             frequentRenterPoints += rental.getFrequentRenterPoints();
-            statement += getRentalSubtotal(thisAmount, rental);
+            statement += rental.getRentalSubtotal(thisAmount);
             totalAmount += thisAmount;
 		}
         statement = getSummary(totalAmount, frequentRenterPoints, statement);
@@ -42,34 +42,18 @@ public class Customer {
         return statement;
     }
 
-    private String getRentalSubtotal(double thisAmount, Rental rental) {
-        String statement;
-        statement = "\t" + rental.movie.getMovie().getTitle() + "\t"
-                + String.valueOf(thisAmount) + "\n";
-        return statement;
-    }
-
     public String htmlStatement() {
         double totalAmount = 0;
         int frequentRenterPoints = 0;
-        Iterator<Rental> rentals = rentalList.iterator();
         String statement = "<H1>Rentals for <EM>" + getName() + "</EM></H1><P>";
-        while (rentals.hasNext()) {
+          for(Rental rental:rentalList){
             double thisAmount = 0;
-            Rental rental = rentals.next();
             thisAmount = rental.getAmountFor(thisAmount);
             frequentRenterPoints += rental.getFrequentRenterPoints();
-            statement += getRentalSubtotalHtml(thisAmount, rental);
+            statement += rental.getRentalSubtotalHtml(thisAmount);
             totalAmount += thisAmount;
         }
         statement = getHtmlSummary(totalAmount, frequentRenterPoints, statement);
-        return statement;
-    }
-
-    private String getRentalSubtotalHtml(double thisAmount, Rental rental) {
-        String statement;
-        statement = "" + rental.movie.getMovie().getTitle() + ": "
-                + String.valueOf(thisAmount) + "<BR>";
         return statement;
     }
 

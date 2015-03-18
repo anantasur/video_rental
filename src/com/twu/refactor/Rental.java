@@ -2,10 +2,9 @@ package com.twu.refactor;
 
 public class Rental {
 
-    Movie movie;
-
+    public Movie movie;
     private int daysRented;
-
+    
     public Rental(Movie movie, int daysRented) {
         this.movie = movie;
         this.daysRented = daysRented;
@@ -16,16 +15,16 @@ public class Rental {
     }
 
     public double getAmountFor(double rentalAmount) {
-        switch (movie.getMovie().getPriceCode()) {
-            case Movie.REGULAR:
+        switch (getPriceCode()) {
+            case REGULAR:
                 rentalAmount += 2;
                 if (getDaysRented() > 2)
                     rentalAmount += (getDaysRented() - 2) * 1.5;
                 break;
-            case Movie.NEW_RELEASE:
+            case NEW_RELEASE:
                 rentalAmount += getDaysRented() * 3;
                 break;
-            case Movie.CHILDRENS:
+            case KIDS:
                 rentalAmount += 1.5;
                 if (getDaysRented() > 3)
                     rentalAmount += (getDaysRented() - 3) * 1.5;
@@ -35,12 +34,34 @@ public class Rental {
         return rentalAmount;
     }
 
+    public MoviePricingCategory getPriceCode() {
+        return movie.getMovie().getPriceCode();
+    }
+
     public int getFrequentRenterPoints() {
         int frequentRenterPoints = 0;
         frequentRenterPoints++;
-        if ((movie.getMovie().getPriceCode() == Movie.NEW_RELEASE)
+        if (isMovieNewRelease()
                 && getDaysRented() > 1)
             frequentRenterPoints++;
         return frequentRenterPoints;
+    }
+
+    private boolean isMovieNewRelease() {
+        return getPriceCode() == MoviePricingCategory.NEW_RELEASE;
+    }
+
+    public String getRentalSubtotalHtml(double thisAmount) {
+        String statement;
+        statement = "" + movie.getMovie().getTitle() + ": "
+                + String.valueOf(thisAmount) + "<BR>";
+        return statement;
+    }
+
+    public String getRentalSubtotal(double thisAmount) {
+        String statement;
+        statement = "\t" + movie.getMovie().getTitle() + "\t"
+                + String.valueOf(thisAmount) + "\n";
+        return statement;
     }
 }
