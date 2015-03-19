@@ -168,6 +168,9 @@
       </item>
     </group>
   </component>
+  <component name="ProjectDictionaryState">
+    <dictionary name="ananthur" />
+  </component>
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Video-rental.iml" filepath="$PROJECT_DIR$/Video-rental.iml" />

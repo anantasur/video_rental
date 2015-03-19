@@ -26,7 +26,7 @@ public class Customer {
         String statement;
         statement = "\t" + rental.movie.getMovie().getTitle() + "\t"
                 + String.valueOf(thisAmount) + "\n";
-        return statement;
+          return statement;
     }
 
 

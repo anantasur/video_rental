@@ -18,10 +18,6 @@ public class Rental {
         return movie.GetCostForMovie(getDaysRented());
     }
 
-    public MoviePricingCategory getPriceCode() {
-        return movie.getMovie().getPriceCode();
-    }
-
     public int getFrequentRenterPoints() {
         int frequentRenterPoints = 0;
         frequentRenterPoints++;
