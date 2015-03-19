@@ -25,23 +25,9 @@ public class Rental {
     public int getFrequentRenterPoints() {
         int frequentRenterPoints = 0;
         frequentRenterPoints++;
-        if (movie.isMovieNewRelease(this)
-                && getDaysRented() > 1)
+        if (movie.isMovieNewRelease(this) && getDaysRented() > 1)
             frequentRenterPoints++;
         return frequentRenterPoints;
     }
 
-    public String getRentalSubtotalHtml(double thisAmount) {
-        String statement;
-        statement = "" + movie.getMovie().getTitle() + ": "
-                + String.valueOf(thisAmount) + "<BR>";
-        return statement;
-    }
-
-    public String getRentalSubtotal(double thisAmount) {
-        String statement;
-        statement = "\t" + movie.getMovie().getTitle() + "\t"
-                + String.valueOf(thisAmount) + "\n";
-        return statement;
-    }
 }
