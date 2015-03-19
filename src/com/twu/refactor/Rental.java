@@ -15,7 +15,7 @@ public class Rental {
     }
 
     public double getAmountFor() {
-        return getPriceCode().getCost(getDaysRented());
+        return movie.GetCostForMovie(getDaysRented());
     }
 
     public MoviePricingCategory getPriceCode() {

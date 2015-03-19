@@ -30,5 +30,9 @@ public class Movie {
     public boolean isMovieNewRelease(Rental rental) {
         return rental.getPriceCode() == MoviePricingCategory.NEW_RELEASE;
     }
+
+    public double GetCostForMovie(int days) {
+        return getPriceCode().getCost(days);
+    }
 }
 

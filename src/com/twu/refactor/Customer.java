@@ -6,15 +6,13 @@ public class Customer {
 
 	private String name;
 
-    public ArrayList<Rental> getRentalList() {
-        return rentalList;
-    }
-
     private ArrayList<Rental> rentalList = new ArrayList<Rental>();
 
 	public Customer(String name) {
 		this.name = name;
 	}
+
+    public ArrayList<Rental> getRentalList() { return rentalList; }
 
 	public void addRental(Rental arg) {
 		rentalList.add(arg);
