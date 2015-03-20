@@ -42,11 +42,11 @@ public class CustomerTest extends TestCase {
     	la.setPriceCode(MoviePricingCategory.REGULAR);
         equalsFile("1st Output", "outputChange", s.getStatement());
     }
-//
-////    public void testHtml() throws Exception {
-////        equalsFile("1st Output", "outputHtml", dinsdale.htmlStatement());
-////    }
-//
+
+//    public void testHtml() throws Exception {
+//        equalsFile("1st Output", "outputHtml", dinsdale.htmlStatement());
+//    }
+
 
     protected void equalsFile(String message, String fileName, String actualValue) throws IOException{
         BufferedReader file = new BufferedReader (new FileReader (GOLD_PATH + '/' + fileName));

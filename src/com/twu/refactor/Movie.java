@@ -19,10 +19,6 @@ public class Movie {
 		return title;
 	}
 
-    public Movie getMovie() {
-        return this;
-    }
-
     public boolean isMovieNewRelease() {
         return priceCode == MoviePricingCategory.NEW_RELEASE;
     }
