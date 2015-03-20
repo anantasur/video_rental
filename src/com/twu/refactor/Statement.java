@@ -20,16 +20,10 @@ public class Statement {
     }
 
     public String getStatement() {
-        double totalAmount = 0;
-        int frequentRenterPoints = 0;
         String statement = getHeader();
-        for(Rental rental : customer.getRentalList()) {
-                    double thisAmount = rental.getAmountFor();
-        frequentRenterPoints += rental.getFrequentRenterPoints();
-        statement += customer.getRentalSubtotal(thisAmount, rental);
-        totalAmount += thisAmount;
-                }
-        statement += this.getFooterLines(totalAmount, frequentRenterPoints);
+        for(Rental rental : customer.getRentalList())
+            statement += customer.getRentalSubtotal(rental);
+        statement += getFooterLines(customer.getTotalAmount(), customer.getTotalFrequentRenterPoints());
         return statement;
     }
 

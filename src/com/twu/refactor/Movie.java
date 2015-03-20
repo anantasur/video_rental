@@ -4,10 +4,6 @@ public class Movie {
 
     private String title;
 
-    public MoviePricingCategory getPriceCode() {
-        return priceCode;
-    }
-
     private MoviePricingCategory priceCode;
 
 	public Movie(String title, MoviePricingCategory priceCode) {
@@ -27,7 +23,7 @@ public class Movie {
         return this;
     }
 
-    public boolean isMovieNewRelease(Rental rental) {
+    public boolean isMovieNewRelease() {
         return priceCode == MoviePricingCategory.NEW_RELEASE;
     }
 

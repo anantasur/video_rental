@@ -22,11 +22,25 @@ public class Customer {
 		return name;
 	}
 
-    public String getRentalSubtotal(double thisAmount, Rental rental) {
+    public String getRentalSubtotal(Rental rental) {
         String statement;
-        statement = "\t" + rental.movie.getMovie().getTitle() + "\t"
-                + String.valueOf(thisAmount) + "\n";
+        statement = "\t" + rental.movie.getTitle() + "\t"
+                + String.valueOf(rental.getAmountFor()) + "\n";
           return statement;
+    }
+
+    public double getTotalAmount() {
+        double totalAmount = 0;
+        for(Rental rental : rentalList)
+            totalAmount += rental.getAmountFor();
+        return totalAmount;
+    }
+
+    public int getTotalFrequentRenterPoints() {
+        int frequentRenterPoints = 0;
+        for(Rental rental : rentalList)
+            frequentRenterPoints += rental.getFrequentRenterPoints();
+        return frequentRenterPoints;
     }
 
 

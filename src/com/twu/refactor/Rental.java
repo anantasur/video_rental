@@ -15,13 +15,12 @@ public class Rental {
     }
 
     public double getAmountFor() {
-        return movie.GetCostForMovie(getDaysRented());
+        return movie.GetCostForMovie(daysRented);
     }
 
     public int getFrequentRenterPoints() {
-        int frequentRenterPoints = 0;
-        frequentRenterPoints++;
-        if (movie.isMovieNewRelease(this) && getDaysRented() > 1)
+        int frequentRenterPoints = 1;
+        if (movie.isMovieNewRelease() && daysRented > 1)
             frequentRenterPoints++;
         return frequentRenterPoints;
     }

@@ -28,30 +28,26 @@ public class CustomerTest extends TestCase {
    }
 
     public void testEmpty() throws Exception {
-    	dinsdale = new Customer("Dinsdale Pirhana");
+        dinsdale = new Customer("Dinsdale Pirhana");
         Statement s = new Statement(dinsdale);
         equalsFile("1st Output", "outputEmpty", s.getStatement());
     }
     public void testCustomer() throws Exception {
-        dinsdale = new Customer("Dinsdale Pirhana");
         Statement s = new Statement(dinsdale);
-        setUp();
         equalsFile("1st Output", "output1", s.getStatement());
     }
 
     public void testChange() throws Exception {
-        dinsdale = new Customer("Dinsdale Pirhana");
         Statement s = new Statement(dinsdale);
-        setUp();
     	la.setPriceCode(MoviePricingCategory.REGULAR);
         equalsFile("1st Output", "outputChange", s.getStatement());
     }
+//
+////    public void testHtml() throws Exception {
+////        equalsFile("1st Output", "outputHtml", dinsdale.htmlStatement());
+////    }
+//
 
-//    public void testHtml() throws Exception {
-//        equalsFile("1st Output", "outputHtml", dinsdale.htmlStatement());
-//    }
-
-    	
     protected void equalsFile(String message, String fileName, String actualValue) throws IOException{
         BufferedReader file = new BufferedReader (new FileReader (GOLD_PATH + '/' + fileName));
         BufferedReader actualStream = new BufferedReader (new StringReader (actualValue));
